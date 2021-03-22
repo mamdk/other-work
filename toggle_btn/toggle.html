@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>toggle</title>
+	<style>
+		:root {
+			--dark: #101010;
+			--light: #909090;
+		}
+
+		.toggle {
+			position: relative;
+			width: 60px;
+			height: 30px;
+			display: inline-flex;
+			border-radius: 20px;
+		}
+
+		.toggle input {
+			width: 0;
+			height: 0;
+			opacity: 0;
+		}
+
+		.toggle span {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border-radius: 20px;
+			height: 100%;
+			overflow: hidden;
+			background-color: var(--dark);
+			transition: 1s 1s all;
+		}
+
+		.toggle span::before {
+			content: "";
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			left: 10px;
+			top: 15px;
+			transform: translate(0, -50%);
+			border-radius: 50%;
+			background-color: var(--light);
+			z-index: 1;
+			animation: beforeToSmall 1.5s linear forwards;
+		}
+
+		.toggle span::after {
+			content: "";
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			right: 10px;
+			top: 15px;
+			transform: translate(0, -50%) scale(11);
+			border-radius: 50%;
+			background-color: var(--dark);
+			animation: beforeToBig 1s linear forwards;
+		}
+
+		.toggle input:checked ~ span::before {
+			animation: beforeToBig 1s linear forwards;
+
+		}
+
+		.toggle input:checked ~ span::after {
+			animation: afterToSmall 1.5s linear forwards;
+		}
+
+
+		.toggle input:checked ~ span {
+			background-color: var(--light);
+		}
+
+
+		@keyframes beforeToSmall {
+			0% {
+				transform: translate(0, -50%) scale(0);
+				z-index: 0;
+			}
+			70%{
+				transform: translate(0, -50%) scale(0);
+				z-index: 0;
+			}
+			80%{
+				transform: translate(0, -50%) scale(1.5);
+				z-index: 1;
+			}
+			90%{
+				transform: translate(0, -50%) scale(.5);
+				z-index: 1;
+			}
+			100% {
+				transform: translate(0, -50%) scale(1);
+				z-index: 1;
+			}
+		}
+
+		@keyframes afterToSmall {
+			0% {
+				transform: translate(0, -50%) scale(11);
+				z-index: 0;
+			}
+			70%{
+				transform: translate(0, -50%) scale(0);
+				z-index: 0;
+			}
+			80%{
+				transform: translate(0, -50%) scale(1.5);
+				z-index: 1;
+			}
+			90%{
+				transform: translate(0, -50%) scale(.5);
+				z-index: 1;
+			}
+			100% {
+				transform: translate(0, -50%) scale(1);
+				z-index: 1;
+			}
+		}
+
+
+		@keyframes beforeToBig {
+			0% {
+				transform: translate(0, -50%) scale(0);
+			}
+			100% {
+				transform: translate(0, -50%) scale(11);
+			}
+		}
+
+	</style>
+</head>
+<body>
+<label class="toggle">
+	<input type="checkbox">
+	<span></span>
+</label>
+</body>
+</html>
