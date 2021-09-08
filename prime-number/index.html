@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prime numbers</title>
+</head>
+
+<body>
+    <!-- <input type="number"> -->
+
+    <script>
+        function getPrimes(num) {
+            num = Math.abs(num);
+            let arr = [];
+            for (let i = 1; i <= num; i++) {
+                let isPrim = true;
+                for (let j = 2; j < i; j++) {
+                    if (i % j == 0) {
+                        isPrim = false
+                        break;
+                    }
+                }
+                if (isPrim) arr.push(i);
+            }
+            return arr;
+        }
+
+        //function get number and check if is prime
+
+        function checkPrimeNumber(num) {
+            num = Math.abs(num)
+            if (num != 2 && num % 2 == 0) return false
+            let isPrime = true;
+            for (let i = 3; i < num; i++) {
+                if (num % i == 0) isPrime = false
+            }
+            return isPrime
+        }
+    </script>
+</body>
+
+</html>
